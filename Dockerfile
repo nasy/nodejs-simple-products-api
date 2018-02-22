@@ -19,5 +19,5 @@ COPY . /usr/src/app
 EXPOSE 3000
 
 # Serve the app
-CMD ["npm", "start"]
-#CMD ["npm", "test"]
+#CMD ["npm", "start"]
+CMD ["npm", "test"]

@@ -3,6 +3,10 @@ This is a simple API in Node.js using MongoDB and ExpressJS
 
 This API allows users to do CRUD operations on Products.
 
+Usage:
+* docker-compose build
+* docker-compose up
+
 The products have the following attributes:
 
 * description: Product description

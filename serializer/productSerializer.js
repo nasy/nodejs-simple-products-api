@@ -1,12 +1,13 @@
 var config = require('./../config');
 var request = require('request');
+var currencyConverterService = require('./../service/currencyConverterService');
 function productSerializer(){
 
 }
 productSerializer.prototype.serializeProduct = function(productModel, currency){
   return new Promise((resolve, reject) => {
     var currency = (currency) ? currency.toUpperCase() : 'USD';
-    getExchangeRate(currency)
+    currencyConverterService.getExchangeRate(currency)
     .then((exchangeRate) => {
       return resolve(serialize(productModel, exchangeRate, currency));
     })
@@ -18,7 +19,7 @@ productSerializer.prototype.serializeProduct = function(productModel, currency){
 productSerializer.prototype.serializeProducts = function(productModels, currency){
   return new Promise((resolve, reject) => {
     var currency = (currency) ? currency.toUpperCase() : 'USD';
-    getExchangeRate(currency)
+    currencyConverterService.getExchangeRate(currency)
     .then((exchangeRate) => {
       var products = [];
       productModels.forEach(productModel => {
@@ -46,36 +47,5 @@ function serialize(productModel, exchangeRate, currency){
     total_price : finalTotalPrice,
     total_cost : finalTotalCost
   }
-}
-function getExchangeRate(currency){
-  return new Promise((resolve, reject) => {
-    if(currency == "USD"){
-      return resolve(1);
-    }else{
-      request({
-         uri : config.currency_conversion_api,
-         json : true,
-         method : 'GET'
-       }, (err, response, body) => {
-         if(err){
-           return reject('ERROR_RETRIEVING_THE_CURRENCY');
-         } else {
-           var currencyExists = false;
-           var exchangeRate = null;
-           for (responseCurrency in body.rates) {
-             if(responseCurrency == currency){
-               exchangeRate = body.rates[responseCurrency];
-               currencyExists = true;
-             }
-           }
-           if(!currencyExists){
-             return reject('CURRENCY_NOT_FOUND');
-           }else{
-             return resolve(exchangeRate);
-           }
-         }
-      });
-    }
-  });
 }
 module.exports = new productSerializer();
