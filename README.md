@@ -13,9 +13,9 @@ The products have the following attributes:
 
 * stock: How many products I have in stock
 
-* total_cost -> How much money I paid for all items of any given product.
+* total_cost: How much money I paid for all items of any given product.
 
-* total_price -> how much money would I get if I sold them all.
+* total_price: how much money would I get if I sold them all.
 
 CRUD operations:
 
@@ -28,6 +28,8 @@ CRUD operations:
 * PUT /products/:id
 
 * DELETE /products/:id
+
+Pass a ?currency=EUR parameter to get the prices in a different currency
 
 To get the total stock:
 
