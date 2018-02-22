@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  express:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - database # link this service to the database service
+
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"

@@ -1,0 +1,22 @@
+{
+  "name": "products-api",
+  "version": "0.0.1",
+  "description": "Products api",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.6",
+    "request": "^2.81.0",
+    "uuid": "^3.0.1",
+    "request": "^2.81.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "NODE_ENV=test mocha --timeout 10000 --recursive"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
+  }
+}
