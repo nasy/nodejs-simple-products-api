@@ -12,7 +12,7 @@ productSerializer.prototype.serializeProduct = function(productModel, currency){
       return resolve(serialize(productModel, exchangeRate, currency));
     })
     .catch(error => {
-      return reject(null, error);
+      return reject(error);
     });
   });
 }
@@ -28,7 +28,7 @@ productSerializer.prototype.serializeProducts = function(productModels, currency
       return resolve(products);
     })
     .catch(error => {
-      return reject(null, error);
+      return reject(error);
     });
   });
 }
