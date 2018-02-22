@@ -7,6 +7,7 @@ var stockSerializer = require('./../serializer/stockSerializer');
 stockRouter.get('/stock', function (req, res){
   productService.getStock()
   .then((stock) => {
+    console.log(req.query.currency)
     stockSerializer.serializeStock(stock.price, stock.cost, req.query.currency)
     .then((stock) => {
       res.send(apiResponseService.success(stock));

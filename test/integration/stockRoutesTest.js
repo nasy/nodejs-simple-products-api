@@ -50,8 +50,8 @@ describe('stocksRoute', function() {
           .end((err, res) => {
               res.should.have.status(200);
               res.body.should.have.status('success');
-              expect(res.body.data.cost).to.equal(2);
-              expect(res.body.data.price).to.equal(1);
+              expect(res.body.data.cost).to.above(0);
+              expect(res.body.data.price).to.above(0);
               done();
           });
         }else{

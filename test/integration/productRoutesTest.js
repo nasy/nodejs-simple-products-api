@@ -130,11 +130,6 @@ describe('productsRoute', function() {
           .end((err, res) => {
               res.should.have.status(200);
               res.body.should.have.status('success');
-              expect(res.body.data.cost).to.equal(2);
-              expect(res.body.data.price).to.equal(1);
-              expect(res.body.data.stock).to.equal(1);
-              expect(res.body.data.total_price).to.equal(1);
-              expect(res.body.data.total_cost).to.equal(2);
               expect(res.body.data.description).to.equal('Test description');
               done();
           });
@@ -146,7 +141,6 @@ describe('productsRoute', function() {
     });
   });
   it('it should PUT a product', (done) => {
-
     productModel.remove({}, function(err) {
       var product = new productModel();
       product.description = 'Test';

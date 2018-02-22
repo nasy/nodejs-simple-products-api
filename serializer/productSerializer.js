@@ -1,4 +1,3 @@
-var config = require('./../config');
 var request = require('request');
 var currencyConverterService = require('./../service/currencyConverterService');
 function productSerializer(){
@@ -6,7 +5,7 @@ function productSerializer(){
 }
 productSerializer.prototype.serializeProduct = function(productModel, currency){
   return new Promise((resolve, reject) => {
-    var currency = (currency) ? currency.toUpperCase() : 'USD';
+    currency = (currency) ? currency.toUpperCase() : 'USD';
     currencyConverterService.getExchangeRate(currency)
     .then((exchangeRate) => {
       return resolve(serialize(productModel, exchangeRate, currency));
@@ -18,7 +17,7 @@ productSerializer.prototype.serializeProduct = function(productModel, currency){
 }
 productSerializer.prototype.serializeProducts = function(productModels, currency){
   return new Promise((resolve, reject) => {
-    var currency = (currency) ? currency.toUpperCase() : 'USD';
+    currency = (currency) ? currency.toUpperCase() : 'USD';
     currencyConverterService.getExchangeRate(currency)
     .then((exchangeRate) => {
       var products = [];
@@ -28,6 +27,7 @@ productSerializer.prototype.serializeProducts = function(productModels, currency
       return resolve(products);
     })
     .catch(error => {
+      console.log(error)
       return reject(error);
     });
   });
